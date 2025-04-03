@@ -1,0 +1,25 @@
+void main() {
+  
+  int a = 5;
+  int b = 3;
+ 
+  print('Addition: ${a + b}');
+  print('Subtraction: ${a - b}');
+  print('Multiplication: ${a * b}');
+  print('Division: ${a / b}');
+  print('Modulus: ${a % b}'); 
+
+
+  a += 2; 
+  print('Updated a: $a');
+
+  print('Is a greater than b? ${a > b}');
+  print('Is a equal to b? ${a == b}');
+
+ 
+  bool x = true;
+  bool y = false;
+  print('x AND y: ${x && y}'); 
+  print('x OR y: ${x || y}');  
+  print('NOT x: ${!x}');       
+}
