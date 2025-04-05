@@ -1,25 +1,65 @@
+import 'dart:io';
+
 void main() {
-  
-  int a = 5;
-  int b = 3;
- 
-  print('Addition: ${a + b}');
-  print('Subtraction: ${a - b}');
-  print('Multiplication: ${a * b}');
-  print('Division: ${a / b}');
-  print('Modulus: ${a % b}'); 
 
+  print("=== Welcome to the Simple Dart Calculator ===");
 
-  a += 2; 
-  print('Updated a: $a');
+  while (true) {
+    // Displays the options for the user
+    print("\nWhat do you want to do?");
+    print("1. Add");
+    print("2. Subtract");
+    print("3. Multiply");
+    print("4. Divide");
+    print("5. Check if first number > second number");
+    print("6. Check if both numbers are equal");
+    print("0. Exit");
 
-  print('Is a greater than b? ${a > b}');
-  print('Is a equal to b? ${a == b}');
+    //  user enters a choice
+    stdout.write("Enter your choice: ");
+    String? choice = stdin.readLineSync();
 
- 
-  bool x = true;
-  bool y = false;
-  print('x AND y: ${x && y}'); 
-  print('x OR y: ${x || y}');  
-  print('NOT x: ${!x}');       
+    // If user enters 0, exit the program
+    if (choice == '0') {
+      print("Thanks for using the calculator. Goodbye!");
+      break;
+    }
+
+    // Asking the user to input two numbers
+    stdout.write("Enter the first number: ");
+    int num1 = int.parse(stdin.readLineSync()!);
+
+    stdout.write("Enter the second number: ");
+    int num2 = int.parse(stdin.readLineSync()!);
+
+    // Doing the operation based on the user's choice
+    if (choice == '1') {
+      print("Result: $num1 + $num2 = ${num1 + num2}");
+    } else if (choice == '2') {
+      print("Result: $num1 - $num2 = ${num1 - num2}");
+    } else if (choice == '3') {
+      print("Result: $num1 * $num2 = ${num1 * num2}");
+    } else if (choice == '4') {
+      if (num2 != 0) {
+        print("Result: $num1 / $num2 = ${num1 / num2}");
+      } else {
+        print("You can't divide by zero.");
+      }
+    } else if (choice == '5') {
+      if (num1 > num2) {
+        print("$num1 is greater than $num2.");
+      } else {
+        print("$num1 is not greater than $num2.");
+      }
+    } else if (choice == '6') {
+      if (num1 == num2) {
+        print("Both numbers are equal.");
+      } else {
+        print("The numbers are not equal.");
+      }
+    } else {
+      // If the user enters a wrong option
+      print("Invalid choice. Please try again.");
+    }
+  }
 }
