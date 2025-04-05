@@ -3,3 +3,5 @@
 
 2.A simple program demonstrating **assignment, arithmetic, comparison, and logical operators**.
 
+3.A simple Multiplication Table Helper
+
