@@ -1,171 +1,145 @@
 import 'dart:io';
 
-class Car 
-{
+class Car {
   String name;
   double price;
 
   Car(this.name, this.price);
 
-
-  void changePrice(double newPrice) 
-{
+  void changePrice(double newPrice) {
     price = newPrice;
-    print('Price of $name is now \$${price}.');
+    print('The price of $name has been updated to \$$price.');
   }
 }
 
-
-class Person
-{
+class Person {
   String name;
   List<Car> ownedCars = [];
   double moneyLeft;
 
   Person(this.name, this.moneyLeft);
 
-
-  void buyCar(Car car)
-{
-    if (moneyLeft >= car.price)
-{
+  void buyCar(Car car) {
+    if (moneyLeft >= car.price) {
       ownedCars.add(car);
       moneyLeft -= car.price;
-      print('You bought a ${car.name} for \$${car.price}. You have \$${moneyLeft} left.');
-    } 
-else
-{
-      print('Sorry, you don’t have enough money for this car.');
+      print('Great choice, $name! You just bought a ${car.name} for \${car.price}. You now have \$$moneyLeft left.');
+    } else {
+      print('Oops! $name, you don’t have enough money to buy a ${car.name}.');
     }
   }
 
- 
-  void sellCar(Car car)
-{
-    if (ownedCars.contains(car))
-{
+  void sellCar(Car car) {
+    if (ownedCars.contains(car)) {
       ownedCars.remove(car);
       moneyLeft += car.price;
-      print('You sold your ${car.name}. Now you have \$${moneyLeft}.');
+      print('You sold your ${car.name} for \${car.price}. Now you have \$$moneyLeft in your pocket.');
     } 
-else
-{
-      print('You don’t own this car.');
+else {
+      print('$name, you don’t own a ${car.name} to sell!');
     }
   }
 }
 
-void main() 
-{
-  List<Car> carsForSale = [
-    Car('Toyota Camry', 25000),
-    Car('Honda Civic', 20000),
-    Car('Ford F-150', 35000),
-  ];
+void main() {
+  Car car1 = Car('Toyota Camry', 25000);
+  Car car2 = Car('Honda Civic', 20000);
+  Car car3 = Car('Ford F-150', 35000);
 
-  print('Welcome to the car platform!');
+  print('Welcome to the Car Buying and Selling Platform!\n');
   print('What’s your name?');
   String userName = stdin.readLineSync()!;
-  print('Hi $userName, how much money do you have?');
+  print('Hey $userName! How much money do you have?');
   double userMoney = double.parse(stdin.readLineSync()!);
   Person user = Person(userName, userMoney);
 
-  while (true)
-{
-    print('\nWhat would you like to do?');
+  while (true) {
+    print('\nHere’s what you can do:');
     print('1. Buy a car');
     print('2. Change car price');
     print('3. Sell a car');
     print('4. View my cars');
     print('5. Exit');
-    print('Enter a number to choose:');
+    print('What would you like to do? Enter a number:');
     
     int choice = int.parse(stdin.readLineSync()!);
 
-    switch (choice) 
-{
-      case 1: 
-        print('\nAvailable cars:');
-        for (int i = 0; i < carsForSale.length; i++)
-{
-          print('${i + 1}. ${carsForSale[i].name} - \$${carsForSale[i].price}');
-        }
-        print('Which car would you like to buy?');
-        int carChoice = int.parse(stdin.readLineSync()!);
-        if (carChoice >= 1 && carChoice <= carsForSale.length) 
-{
-          user.buyCar(carsForSale[carChoice - 1]);
-        }
-else
-{
-          print('Invalid choice. Try again!');
-        }
-        break;
-
-      case 2: 
-        print('Which car’s price would you like to change?');
-        for (int i = 0; i < carsForSale.length; i++) {
-          print('${i + 1}. ${carsForSale[i].name}');
-        }
-        int priceChoice = int.parse(stdin.readLineSync()!);
-        print('Enter the new price for this car:');
-        double newPrice = double.parse(stdin.readLineSync()!);
-        if (priceChoice >= 1 && priceChoice <= carsForSale.length)
-{
-          carsForSale[priceChoice - 1].changePrice(newPrice);
-        } 
-else
-{
-          print('Invalid car choice. Try again!');
-}
-        break;
-
-      case 3: 
-        if (user.ownedCars.isNotEmpty) {
-          print('\nYour cars:');
-          for (int i = 0; i < user.ownedCars.length; i++) {
-            print('${i + 1}. ${user.ownedCars[i].name}');
-          }
-          print('Which car would you like to sell?');
-          int sellChoice = int.parse(stdin.readLineSync()!);
-          if (sellChoice >= 1 && sellChoice <= user.ownedCars.length) {
-            user.sellCar(user.ownedCars[sellChoice - 1]);
-          } 
-
-else 
-{
-            print('Invalid choice. Try again!');
-}
-        } 
-else 
-{
-          print('You don’t own any cars yet.');
-        }
-        break;
-
-      case 4: 
-        if (user.ownedCars.isNotEmpty) {
-          print('\nYour owned cars:');
-          for (int i = 0; i < user.ownedCars.length; i++) {
-            print('${i + 1}. ${user.ownedCars[i].name}');
-          }
-        } 
-else 
-{
-          print('You don’t own any cars.');
-        }
-        break;
-
-      case 5: 
-        print('Thank you for using the platform! Goodbye!');
-        return;
-
-      default:
-        print('Invalid choice. Please try again!');
+    if (choice == 1) {
+      print('\nAvailable Cars:');
+      print('1. ${car1.name} - \$${car1.price}');
+      print('2. ${car2.name} - \$${car2.price}');
+      print('3. ${car3.name} - \$${car3.price}');
+      print('Which car would you like to buy? Enter the car number:');
+      int carChoice = int.parse(stdin.readLineSync()!);
+      if (carChoice == 1) {
+        user.buyCar(car1);
+      } 
+else if (carChoice == 2) {
+        user.buyCar(car2);
+      } else if (carChoice == 3) {
+        user.buyCar(car3);
+      } 
+else {
+        print('Hmm... That’s not a valid option. Try again!');
+      }
     }
-  }
-}
- not a valid option. Try again!');
+else if (choice == 2) {
+      print('\nWhich car’s price do you want to change?');
+      print('1. ${car1.name}');
+      print('2. ${car2.name}');
+      print('3. ${car3.name}');
+      int carChoice = int.parse(stdin.readLineSync()!);
+      print('Enter the new price:');
+      double newPrice = double.parse(stdin.readLineSync()!);
+      if (carChoice == 1) {
+        car1.changePrice(newPrice);
+      } 
+else if (carChoice == 2) {
+        car2.changePrice(newPrice);
+      } 
+else if (carChoice == 3) {
+        car3.changePrice(newPrice);
+      }
+else {
+        print('Oops! That’s not a valid choice. Try again.');
+      }
+    } 
+else if (choice == 3) {
+      if (user.ownedCars.isNotEmpty) {
+        print('\nHere are your cars, $userName:');
+        for (int i = 0; i < user.ownedCars.length; i++) {
+          print('${i + 1}. ${user.ownedCars[i].name}');
+        }
+        print('Which one would you like to sell? Enter the car number:');
+        int sellChoice = int.parse(stdin.readLineSync()!);
+        if (sellChoice >= 1 && sellChoice <= user.ownedCars.length) {
+          user.sellCar(user.ownedCars[sellChoice - 1]);
+        } 
+else {
+          print('Hmm… That’s not a valid choice. Try again.');
+        }
+      } 
+else {
+        print('\n$userName, you don’t have any cars to sell yet!');
+      }
+    }
+else if (choice == 4) {
+      if (user.ownedCars.isNotEmpty) {
+        print('\nYour owned cars, $userName:');
+        for (int i = 0; i < user.ownedCars.length; i++) {
+          print('${i + 1}. ${user.ownedCars[i].name}');
+        }
+      } 
+else {
+        print('$userName, you don’t own any cars yet!');
+      }
+    } 
+else if (choice == 5) {
+      print('Thanks for visiting the Car Buying and Selling Platform, $userName! Drive safe!');
+      break;
+    } 
+else {
+      print('That’s not a valid option. Try again!');
     }
   }
 }
