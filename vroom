@@ -25,7 +25,7 @@ class Person {
       moneyLeft -= car.price;
       print('Great choice, $name! You just bought a ${car.name} for \${car.price}. You now have \$$moneyLeft left.');
     } else {
-      print('Oops! $name, you don’t have enough money to buy a ${car.name}.');
+      print('Oops! $name, you don’t have enough money to buy a ${car.name}.Better luck next time.');
     }
   }
 
@@ -101,7 +101,7 @@ else if (carChoice == 3) {
         car3.changePrice(newPrice);
       }
 else {
-        print('Oops! That’s not a valid choice. Try again.');
+        print('SOORY! That’s a wrong choice. Try again.');
       }
     } 
 else if (choice == 3) {
@@ -116,7 +116,7 @@ else if (choice == 3) {
           user.sellCar(user.ownedCars[sellChoice - 1]);
         } 
 else {
-          print('Hmm… That’s not a valid choice. Try again.');
+          print('Hmm… That’s  a wrong choice. Try again.');
         }
       } 
 else {
@@ -135,7 +135,7 @@ else {
       }
     } 
 else if (choice == 5) {
-      print('Thanks for visiting the Car Buying and Selling Platform, $userName! Drive safe!');
+      print('Thanks for visiting the Car Buying and Selling Platform, $userName! Drive safe!.Have great journey!');
       break;
     } 
 else {
